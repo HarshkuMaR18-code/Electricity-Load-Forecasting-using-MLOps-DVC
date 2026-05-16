@@ -11,6 +11,7 @@ An end-to-end MLOps pipeline for Electricity Load Forecasting using XGBoost, DVC
 * DVC
 * DVCLive
 * Git & GitHub
+* Yaml
 
 ## 📂 Pipeline Stages
 

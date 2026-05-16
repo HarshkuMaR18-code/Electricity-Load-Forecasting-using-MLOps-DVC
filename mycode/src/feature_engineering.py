@@ -87,7 +87,7 @@ def save_data(df: pd.DataFrame, file_path: str) -> None:
 
 def main():
     try:
-        params = load_params(params_path='mycode\prams.yaml')
+        params = load_params(params_path='mycode\params.yaml')
         n_hours = params['feature_engineering']['n_hours']
         m_days = params['feature_engineering']['m_days']
         

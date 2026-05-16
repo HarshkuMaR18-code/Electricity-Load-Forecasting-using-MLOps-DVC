@@ -3,41 +3,56 @@ stages:
   data_ingestion:
     cmd: python mycode/src/data_ingestion.py
     deps:
-      - mycode/src/data_ingestion.py
-      - mycode/prams.yaml
+    - mycode/src/data_ingestion.py
+    - mycode/params.yaml
+    params:
+    - mycode/params.yaml:
+      - data_ingestion.test_size
     outs:
-      - data/raw
+    - data/raw
 
   data_preprocessing:
     cmd: python mycode/src/data_preprocessing.py
     deps:
-      - mycode/src/data_preprocessing.py
-      - data/raw
+    - mycode/src/data_preprocessing.py
+    - data/raw
     outs:
-      - data/interim
+    - data/interim
 
   feature_engineering:
     cmd: python mycode/src/feature_engineering.py
     deps:
-      - mycode/src/feature_engineering.py
-      - data/interim
-      - mycode/prams.yaml
+    - mycode/src/feature_engineering.py
+    - data/interim
+    - mycode/params.yaml
+    params:
+    - mycode/params.yaml:
+      - feature_engineering.n_hours
+      - feature_engineering.m_days
     outs:
-      - data/processed
+    - data/processed
 
   model_building:
     cmd: python mycode/src/model_building.py
     deps:
-      - mycode/src/model_building.py
-      - data/processed/train_final.csv
+    - mycode/src/model_building.py
+    - data/processed/train_final.csv
     outs:
-      - models/model.pkl
+    - models/model.pkl
 
   model_evaluation:
     cmd: python mycode/src/model_evaluation.py
     deps:
-      - mycode/src/model_evaluation.py
-      - models/model.pkl
-      - data/processed/test_final.csv
+    - mycode/src/model_evaluation.py
+    - models/model.pkl
+    - data/processed/test_final.csv
+    - mycode/params.yaml
     metrics:
-      - reports/metrics.json
+    - reports/metrics.json
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

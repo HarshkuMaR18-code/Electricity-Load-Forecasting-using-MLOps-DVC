@@ -1,0 +1,6 @@
+data_ingestion:
+  test_size: 0.30
+
+feature_engineering:
+  n_hours: 2
+  m_days: 1

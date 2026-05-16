@@ -78,7 +78,7 @@ def save_data(train_data, test_data, data_path):
 
 def main():
     try:
-        params = load_params(params_path='mycode\params.yaml')
+        params = load_params(params_path='mycode\prams.yaml')
         test_size = params['data_ingestion']['test_size']
         # test_size = 0.2
         data_path = 'https://raw.githubusercontent.com/HarshkuMaR18-code/Electricity-Load-Forecasting-Dataset/refs/heads/main/continuous%20dataset.csv'

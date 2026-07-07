@@ -110,12 +110,13 @@ def save_metrics(metrics: dict, file_path: str) -> None:
 
 def main():
     try:
-        params = load_params(params_path='mycode\params.yaml')
+        params = load_params(params_path=os.path.join('mycode', 'params.yaml'))
         clf = load_model('./models/model.pkl')
         test_data = load_data('./data/processed/test_final.csv')
 
         y_test = test_data['nat_demand'].values
-        test_data.drop(columns=['nat_demand'], inplace=True)
+        test_data.drop(columns=['nat_demand', 'target'], inplace=True)
+
         X_test = test_data.values
 
         metrics = evaluate_model(clf, X_test, y_test)

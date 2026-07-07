@@ -65,12 +65,6 @@ def train_model(X_train, y_train):
 
 
 def save_model(model, file_path: str) -> None:
-    """
-    Save the trained model to a file.
-    
-    :param model: Trained model object
-    :param file_path: Path to save the model file
-    """
     try:
         # Ensure the directory exists
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -90,7 +84,7 @@ def main():
 
         train_data = load_data('./data/processed/train_final.csv')
         y_train = train_data['nat_demand'].values
-        train_data.drop(columns=['nat_demand'], inplace=True)
+        train_data.drop(columns=['nat_demand', 'target'], inplace=True)
         X_train = train_data.values
 
         model = train_model(X_train, y_train)
